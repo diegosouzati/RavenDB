@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108" Height="47" Click="btnCadastrar_Click"/>
+        <Button x:Name="btnConsultar" Content="Consultar" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top" Width="108" Height="47" Click="btnConsultar_Click"/>
+        <TextBlock Name="tbCliente" HorizontalAlignment="Left" Margin="32,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23"><Run Text="Cliente"/><Run Text=": "/><LineBreak/><Run/></TextBlock>
+        <TextBox Name="txtNome" HorizontalAlignment="Left" Height="22" Margin="85,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnDeletar" Content="Deletar" HorizontalAlignment="Left" Margin="236,10,0,0" VerticalAlignment="Top" Width="108" Height="47" Click="btnDeletar_Click"/>
+
     </Grid>
 </Window>

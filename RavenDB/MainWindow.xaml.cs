@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Repositorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,57 @@ namespace RavenDB
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string IdDoClienteSelecionado { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnCadastrar_Click(object sender, RoutedEventArgs e)
+        {
+            var cliente = new Cliente
+            {
+                Nome = txtNome.Text,
+                CPF = "038.185.156-43",
+                Email = "diegosouzati@outlook.com",
+                Telefone = "75 99221-9089",
+                Endereco = new Endereco
+                {
+                    Logradouro = "Rua.: Monteiro Lobato",
+                    Complemento = "Casa", 
+                    Numero = 34,
+                    Cidade = "Santaluz",
+                    Estado = "Bahia"
+                }
+
+            };
+
+            var repositorio = new RepositorioGenerico();
+            var idCliente =  repositorio.Cadastrar(cliente);
+            IdDoClienteSelecionado = idCliente;
+
+            MessageBox.Show($"Cliente Salvo com Sucesso! ({idCliente}");
+        }
+
+        private void btnConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            var repositorio = new RepositorioGenerico();
+            var cliente = repositorio.Consulte(IdDoClienteSelecionado);
+            MessageBox.Show($"Cliente concultado {cliente.Nome} ");
+        }
+
+        private void btnDeletar_Click(object sender, RoutedEventArgs e)
+        {
+            if(IdDoClienteSelecionado == null)
+            {
+                MessageBox.Show("Não há o que remover");
+                return;
+            }
+            var repositorio = new RepositorioGenerico();
+            repositorio.Deletar(IdDoClienteSelecionado);
+
+            MessageBox.Show($"Cliente deletado com sucesso");
+
         }
     }
 }
