@@ -8,6 +8,12 @@ namespace Model
 {
     public class Cliente
     {
+
+        //Outra forma de fazer é assim
+        public Cliente()
+        {
+            Endereco = new Endereco();
+        }
         public string Id { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }

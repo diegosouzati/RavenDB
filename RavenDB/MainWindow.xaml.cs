@@ -30,28 +30,28 @@ namespace RavenDB
 
         private void btnCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            var cliente = new Cliente
-            {
-                Nome = txtNome.Text,
-                CPF = "038.185.156-43",
-                Email = "diegosouzati@outlook.com",
-                Telefone = "75 99221-9089",
-                Endereco = new Endereco
-                {
-                    Logradouro = "Rua.: Monteiro Lobato",
-                    Complemento = "Casa", 
-                    Numero = 34,
-                    Cidade = "Santaluz",
-                    Estado = "Bahia"
-                }
+            //var cliente = new Cliente
+            //{
+            //  //  Nome = txtNome.Text,
+            //    CPF = "038.185.156-43",
+            //    Email = "diegosouzati@outlook.com",
+            //    Telefone = "75 99221-9089",
+            //    Endereco = new Endereco
+            //    {
+            //        Logradouro = "Rua.: Monteiro Lobato",
+            //        Complemento = "Casa", 
+            //        Numero = 34,
+            //        Cidade = "Santaluz",
+            //        Estado = "Bahia"
+            //    }
 
-            };
+            //};
 
-            var repositorio = new RepositorioGenerico();
-            var idCliente =  repositorio.Cadastrar(cliente);
-            IdDoClienteSelecionado = idCliente;
+            //var repositorio = new RepositorioGenerico();
+            //var idCliente =  repositorio.Cadastrar(cliente);
+            //IdDoClienteSelecionado = idCliente;
 
-            MessageBox.Show($"Cliente Salvo com Sucesso! ({idCliente}");
+            //MessageBox.Show($"Cliente Salvo com Sucesso! ({idCliente}");
         }
 
         private void btnConsultar_Click(object sender, RoutedEventArgs e)
@@ -71,8 +71,18 @@ namespace RavenDB
             var repositorio = new RepositorioGenerico();
             repositorio.Deletar(IdDoClienteSelecionado);
 
-            MessageBox.Show($"Cliente deletado com sucesso");
+            MessageBox.Show("Cliente deletado com sucesso");
 
+        }
+
+        private void btnNovo_Click(object sender, RoutedEventArgs e)
+        {
+            var frmCliente = new FrmCliente();
+            frmCliente.ShowDialog();
+            var cliente = frmCliente.Cliente;
+
+            var repositiorio = new RepositorioGenerico();
+            repositiorio.Cadastrar(cliente);
         }
     }
 }

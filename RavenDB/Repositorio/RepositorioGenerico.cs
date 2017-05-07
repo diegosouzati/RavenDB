@@ -43,8 +43,8 @@ namespace Repositorio
         {
             using (IDocumentSession session = store.OpenSession())
             {
-                session.Delete(IdDoClienteSelecionado);
-                session.SaveChanges();
+                session.Delete(IdDoClienteSelecionado); // deleta um cliente do banco
+                session.SaveChanges();// salva as alterações feitas no banco
             }
         }
     }
