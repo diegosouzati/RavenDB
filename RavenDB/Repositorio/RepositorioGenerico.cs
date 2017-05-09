@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class RepositorioGenerico
+    public class RepositorioGenerico<T> where T : ElementoBase, new()
     {
         public DocumentStore store { get; set; }
+
+        // Método de inicialização
         public RepositorioGenerico()
         {
             store = new DocumentStore
@@ -23,29 +25,58 @@ namespace Repositorio
             };
             store.Initialize();
         }
-        public string Cadastrar(Cliente cliente)
+
+        // Método de novo cadastro
+        public virtual string Cadastrar(T item)
+        {
+            item.Id = null; // o ID tem que ser nulo quando é um novo Cadastro
+            return Salvar(item);
+        }
+
+        // Método para Editar um cadastro
+        public virtual string Editar(T item) 
+        {
+            return Salvar(item);
+        }
+
+        // Método de Salvar 
+        public virtual string Salvar(T item)
         {
             using (IDocumentSession session = store.OpenSession())
             {
-                session.Store(cliente);
+                session.Store(item);
                 session.SaveChanges();
             }
-            return cliente.Id;
+            return item.Id;
         }
-        public Cliente Consulte(string IdDoClienteSelecionado)
+
+        // Método de Consultar
+        public virtual T Consulte(string IdDoItem)
         {
             using (IDocumentSession session = store.OpenSession())
             {
-                return session.Load<Cliente>(IdDoClienteSelecionado);               
+                return session.Load<T>(IdDoItem);
             }
         }
-        public void Deletar(string IdDoClienteSelecionado)
+
+        // Método Listar os dados do banco na tela
+        public virtual List<T> Liste()
         {
             using (IDocumentSession session = store.OpenSession())
             {
-                session.Delete(IdDoClienteSelecionado); // deleta um cliente do banco
+                return session.Query<T>().ToList(); //Listar Dados Na tela
+            }
+        }
+
+        // Método Deletar um cadastro do banco
+        public virtual void Deletar(string IdDoItemSalvo)
+        {
+            using (IDocumentSession session = store.OpenSession())
+            {
+                session.Delete(IdDoItemSalvo); // deleta um cliente do banco
                 session.SaveChanges();// salva as alterações feitas no banco
             }
         }
+
     }
 }

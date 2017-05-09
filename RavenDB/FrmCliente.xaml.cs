@@ -21,7 +21,7 @@ namespace RavenDB
         public FrmCliente()
         {
             InitializeComponent();
-            Cliente = new Cliente();
+            Cliente = new Cliente(); // Cliente da Edição
             //Cliente.Endereco = new Endereco(); uma forma de ser feito
             this.DataContext = Cliente; // criando um cliente novo
         }
@@ -41,7 +41,7 @@ namespace RavenDB
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             Cliente = (Cliente)this.DataContext;
-            MessageBox.Show("Cliente Salvo com Sucesso");
+            MessageBox.Show("Cliente Salvo com Sucesso"); //Mensagem de aviso de conclusão
             this.Close();
         }
     }

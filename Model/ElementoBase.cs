@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositorio1
+namespace Model
 {
-    public class Class1
+    public class ElementoBase
     {
+        public string Id { get; set; }
     }
 }

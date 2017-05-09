@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dn32Layout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\dn32Layout.WPF.1.0.4\lib\dn32Layout.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -92,6 +95,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,14 +105,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\01 - Model.csproj">
+    <ProjectReference Include="..\Model\01-Model.csproj">
       <Project>{4cbc6bee-2d38-4090-ad60-82740ea24436}</Project>
-      <Name>01 - Model</Name>
+      <Name>01-Model</Name>
     </ProjectReference>
-    <ProjectReference Include="Repositorio\02 - Repositorio.csproj">
+    <ProjectReference Include="Repositorio\02-Repositorio.csproj">
       <Project>{e045c235-8cfc-48b8-ace5-013cf66888a7}</Project>
-      <Name>02 - Repositorio</Name>
+      <Name>02-Repositorio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\adicione.png" />
+    <Resource Include="img\atualize.png" />
+    <Resource Include="img\edite.png" />
+    <Resource Include="img\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

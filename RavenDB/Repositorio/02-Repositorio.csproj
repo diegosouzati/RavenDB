@@ -48,15 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositorioDeCliente.cs" />
     <Compile Include="RepositorioGenerico.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Model\01 - Model.csproj">
+    <ProjectReference Include="..\..\Model\01-Model.csproj">
       <Project>{4cbc6bee-2d38-4090-ad60-82740ea24436}</Project>
-      <Name>01 - Model</Name>
+      <Name>01-Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

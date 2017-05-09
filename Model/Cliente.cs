@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Cliente
+    public class Cliente : ElementoBase
     {
 
         //Outra forma de fazer é assim
@@ -14,7 +14,6 @@ namespace Model
         {
             Endereco = new Endereco();
         }
-        public string Id { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
         public string Email { get; set; }
