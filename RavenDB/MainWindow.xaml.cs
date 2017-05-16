@@ -6,9 +6,13 @@ namespace RavenDB
 {
     public partial class MainWindow : Window
     {
+        public int PaginaAtual { get; set; } = 1; 
+
         public string IdDoClienteSelecionado { get; set; }
 
         public RepositorioDeCliente Repositorio { get; set; }
+
+        const int QUANTIDADE_POR_PAGINA = 10;
 
         public MainWindow()
         {
@@ -19,7 +23,7 @@ namespace RavenDB
 
         public void CarregueOsElementosDoBancoDeDados()
         {
-            lstClientes.DataContext = Repositorio.Liste();
+            lstClientes.DataContext = Repositorio.Liste(PaginaAtual, QUANTIDADE_POR_PAGINA);
         }
 
         private void btnNovo_Click(object sender, RoutedEventArgs e)
@@ -37,29 +41,29 @@ namespace RavenDB
                 MessageBox.Show("Selecione um item na lista!");
                 return;
             }
-
-           
             var cliente = (Cliente)lstClientes.SelectedItem; // Casting da classe cliente para mostrar os dados da tela no formulário            
             ChameOEditorDeCliente(cliente);// Chama o método para editar o cadastro
-            
+
             Repositorio.Editar(cliente);// operação do repositorio para salvar as edições feitas             
             CarregueOsElementosDoBancoDeDados();// carrega os dados do banco na lista do formulário
         }
 
         // Chamar o Metodo para cadastrar ou editar
         private Cliente ChameOEditorDeCliente(Cliente cliente)
-        {            
+        {
             var frmCliente = new FrmCliente(cliente);// instancia o formulario preenchido com os dados do banco
-            
+
             frmCliente.ShowDialog();// exibe o formulário ao usuario            
             return frmCliente.Cliente;// retorna o formulário preenchido
         }
 
+        // Método para Atualizar a lista
         private void btnAtualuzar_Click(object sender, RoutedEventArgs e)
         {
             CarregueOsElementosDoBancoDeDados();
         }
 
+        // Método para remover um cadastro 
         private void btnRemover_Click(object sender, RoutedEventArgs e)
         {
             if (lstClientes.SelectedItem == null)
@@ -74,5 +78,49 @@ namespace RavenDB
             MessageBox.Show("Cliente deletado com sucesso");
             CarregueOsElementosDoBancoDeDados();
         }
+
+        // Método para consultar por nome 
+        private void txtConsultaIdade_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtConsultaIdade.Text))
+            {
+                CarregueOsElementosDoBancoDeDados();
+            }
+
+            int idade;
+            if (int.TryParse(txtConsultaIdade.Text, out idade)) // conversão de uma string para um inteiro
+            {
+                lstClientes.DataContext = Repositorio.ConsultePorIdade(idade);
+            }
+            else
+            {
+            }
+        }
+
+        // Método para consultar por idade 
+        private void txtConsultaNome_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtConsultaNome.Text))
+            {
+                CarregueOsElementosDoBancoDeDados();
+                return;
+            }
+            lstClientes.DataContext = Repositorio.ConsultePorTermo(txtConsultaNome.Text);
+        }
+
+        private void btnAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            if(PaginaAtual > 1)
+            {
+                PaginaAtual--;
+            }
+            CarregueOsElementosDoBancoDeDados();
+        }
+
+        private void btnProximo_Click(object sender, RoutedEventArgs e)
+        {
+            PaginaAtual++;
+            CarregueOsElementosDoBancoDeDados();
+        }           
     }
 }

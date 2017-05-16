@@ -60,11 +60,19 @@ namespace Repositorio
         }
 
         // Método Listar os dados do banco na tela
-        public virtual List<T> Liste()
+        public virtual List<T> Liste(int pagina, int elementosPorPagina)
         {
+            var quantidadeAPular = (pagina - 1) * elementosPorPagina;
+
             using (IDocumentSession session = store.OpenSession())
             {
-                return session.Query<T>().ToList(); //Listar Dados Na tela
+                //Listar Dados Na tela
+                return session
+                    .Query<T>()
+                    .OrderBy(x => x.Nome) //Regra de negócio para ordenação
+                    .Skip(quantidadeAPular) // Numeração de página
+                    .Take(elementosPorPagina) // Quantidade de elementos por página
+                    .ToList(); 
             }
         }
 

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RavenDB"
         mc:Ignorable="d"
-        Title="Menu" Height="355" Width="807.5" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
+        Title="Menu" Height="518.5" Width="1001" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
 
     <Window.Resources>
         <ResourceDictionary Source="/dn32Layout;component/Themes/dn32ImageButton.xaml"/>
@@ -15,20 +15,21 @@
     <Grid>
         <Controls:dn32ImageButton x:Name="btnNovo"
                                   Style="{DynamicResource dn32ButtonStyle}"
-                                  Text="Novo Cadastro" 
-                                  HorizontalAlignment="Left" Width="151" Height="81" 
+                                  Text="Novo" 
+                                  HorizontalAlignment="Left" Width="94" Height="81" 
                                   VerticalAlignment="Top"   ImageSize="32" FontSize="11"
-                                  Padding="11" Margin="90,10,0,0" Click="btnNovo_Click" BorderThickness="2">
+                                  Padding="11" Margin="10,10,0,0" Click="btnNovo_Click" BorderThickness="2">
             <Controls:dn32ImageButton.Background>
                 <ImageBrush Stretch="None" ImageSource="img/adicione.png"/>
             </Controls:dn32ImageButton.Background>
         </Controls:dn32ImageButton>
+
         <Controls:dn32ImageButton x:Name="btnEditar"
             Style="{DynamicResource dn32ButtonStyle}"
-            Text="Editar Cadastro" 
-            HorizontalAlignment="Left" Width="151" Height="81" 
+            Text="Editar" 
+            HorizontalAlignment="Left" Width="94" Height="81" 
             VerticalAlignment="Top"   ImageSize="32" FontSize="11"
-            Padding="11" Margin="246,10,0,0" Click="btnEditar_Click" BorderThickness="2">
+            Padding="11" Margin="109,10,0,0" Click="btnEditar_Click" BorderThickness="2">
             <Controls:dn32ImageButton.Background>
                 <ImageBrush Stretch="None" ImageSource="img/edite.png"/>
             </Controls:dn32ImageButton.Background>
@@ -36,10 +37,10 @@
 
         <Controls:dn32ImageButton x:Name="btnAtualuzar"
             Style="{DynamicResource dn32ButtonStyle}"
-            Text="Atualizar Cadastro" 
-            HorizontalAlignment="Left" Width="151" Height="81" 
+            Text="Atualizar" 
+            HorizontalAlignment="Left" Width="94" Height="81" 
             VerticalAlignment="Top"   ImageSize="32" FontSize="11"
-            Padding="11" Margin="402,10,0,0" Click="btnAtualuzar_Click" BorderThickness="2">
+            Padding="11" Margin="208,10,0,0" Click="btnAtualuzar_Click" BorderThickness="2">
             <Controls:dn32ImageButton.Background>
                 <ImageBrush ImageSource="img/atualize.png" Stretch="None"/>
             </Controls:dn32ImageButton.Background>
@@ -47,24 +48,61 @@
 
         <Controls:dn32ImageButton x:Name="btnRemover"
             Style="{DynamicResource dn32ButtonStyle}"
-            Text="Remover Cadastro" 
-            HorizontalAlignment="Left" Width="151" Height="81" 
+            Text="Remover" 
+            HorizontalAlignment="Left" Width="94" Height="81"  
             VerticalAlignment="Top"   ImageSize="32" FontSize="11"
-            Padding="11" Margin="558,10,0,0" Click="btnRemover_Click" BorderThickness="2">
+            Padding="11" Margin="307,10,0,0" Click="btnRemover_Click" BorderThickness="2">
             <Controls:dn32ImageButton.Background>
                 <ImageBrush ImageSource="img/remove.png" Stretch="None"/>
             </Controls:dn32ImageButton.Background>
         </Controls:dn32ImageButton>
-        
-        <ListView Name="lstClientes" ItemsSource="{Binding}" Margin="10,96,16,10">
+
+        <ListView Name="lstClientes" ItemsSource="{Binding}" Margin="10,96,16,86" SelectionChanged="lstClientes_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nome" Width="200" DisplayMemberBinding="{Binding Nome}"/>
+                    <GridViewColumn Header="Idade" Width="150" DisplayMemberBinding="{Binding Idade}"/>
                     <GridViewColumn Header="CPF" Width="150" DisplayMemberBinding="{Binding CPF}"/>
                     <GridViewColumn Header="Telefone" Width="150" DisplayMemberBinding="{Binding Telefone}"/>
-                    <GridViewColumn Header="Email" Width="250" DisplayMemberBinding="{Binding Email}"/>
+                    <GridViewColumn Header="Email" Width="270" DisplayMemberBinding="{Binding Email}"/>
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <TextBlock Name="tbConsultaNome" HorizontalAlignment="Left" Margin="419,24,0,0" TextWrapping="Wrap" Text="Consultar por Nome:" VerticalAlignment="Top"/>
+        <TextBox Name="txtConsultaNome" HorizontalAlignment="Left" Height="24" Margin="544,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="402" KeyUp="txtConsultaNome_KeyUp"/>
+
+        <TextBlock x:Name="tbConsultaIdade" HorizontalAlignment="Left" Margin="419,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Consultar por "/><Run Text="Idade"/><Run Text=":"/></TextBlock>
+        <TextBox Name="txtConsultaIdade" HorizontalAlignment="Left" Height="24" Margin="544,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128" KeyUp="txtConsultaIdade_KeyUp"/>
+        <Button x:Name="btnAnterior" Content="Página Anterior" HorizontalAlignment="Left" Margin="10,0,0,10" Width="193" HorizontalContentAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display" Padding="50,41,1,1" Click="btnAnterior_Click" Height="66" VerticalAlignment="Bottom">
+            <Button.Background>
+                <ImageBrush ImageSource="img/previous.png" Stretch="None">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnProximo" Content="Próxima Página" Margin="0,0,16,10" HorizontalContentAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display" Padding="50,41,1,1" Click="btnProximo_Click" Height="66" VerticalAlignment="Bottom" Width="193" HorizontalAlignment="Right">
+            <Button.Background>
+                <ImageBrush ImageSource="img/next.png" Stretch="None" TileMode="Tile">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock Name="txtPaginaAtual" HorizontalAlignment="Center" Margin="465,0,476,15" TextWrapping="Wrap" Text="Página: 1" Height="21" VerticalAlignment="Bottom"/>
+
     </Grid>
 </Window>
