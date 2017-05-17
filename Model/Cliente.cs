@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Raven.Imports.Newtonsoft.Json;
 
 namespace Model
 {
@@ -19,5 +15,9 @@ namespace Model
         public string Email { get; set; }
         public string Telefone { get; set; }
         public Endereco Endereco { get; set; }
+
+        [JsonIgnore]
+        public Cliente  Indicador { get; set; }
+        public string IndicadorId { get; set; }
     }
 }

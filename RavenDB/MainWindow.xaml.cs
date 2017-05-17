@@ -1,16 +1,18 @@
 ﻿using Model;
+using Raven.Client;
 using Repositorio;
+using System;
 using System.Windows;
 
 namespace RavenDB
 {
     public partial class MainWindow : Window
     {
-        public int PaginaAtual { get; set; } = 1; 
-
+        public int PaginaAtual { get; set; } = 1;
         public string IdDoClienteSelecionado { get; set; }
-
         public RepositorioDeCliente Repositorio { get; set; }
+
+        public int QuantidadeTotalDePaginas { get; set; }
 
         const int QUANTIDADE_POR_PAGINA = 10;
 
@@ -23,8 +25,14 @@ namespace RavenDB
 
         public void CarregueOsElementosDoBancoDeDados()
         {
-            lstClientes.DataContext = Repositorio.Liste(PaginaAtual, QUANTIDADE_POR_PAGINA);
+            RavenQueryStatistics estatisticas;
+            lstClientes.DataContext = Repositorio.Liste(PaginaAtual, QUANTIDADE_POR_PAGINA, out estatisticas);
+            QuantidadeTotalDePaginas = (int)Math.Ceiling((decimal)estatisticas.TotalResults / (decimal)QUANTIDADE_POR_PAGINA);
+            txtPaginaAtual.Text = $"Página {PaginaAtual} de {QuantidadeTotalDePaginas}";
         }
+
+
+
 
         private void btnNovo_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +50,9 @@ namespace RavenDB
                 return;
             }
             var cliente = (Cliente)lstClientes.SelectedItem; // Casting da classe cliente para mostrar os dados da tela no formulário            
+
+            cliente = Repositorio.Consulte(cliente.Id); // busca o cliente já editado
+
             ChameOEditorDeCliente(cliente);// Chama o método para editar o cadastro
 
             Repositorio.Editar(cliente);// operação do repositorio para salvar as edições feitas             
@@ -110,7 +121,7 @@ namespace RavenDB
 
         private void btnAnterior_Click(object sender, RoutedEventArgs e)
         {
-            if(PaginaAtual > 1)
+            if (PaginaAtual > 1)
             {
                 PaginaAtual--;
             }
@@ -119,8 +130,12 @@ namespace RavenDB
 
         private void btnProximo_Click(object sender, RoutedEventArgs e)
         {
-            PaginaAtual++;
+            if (PaginaAtual < QuantidadeTotalDePaginas)
+            {
+                PaginaAtual++;
+            }
             CarregueOsElementosDoBancoDeDados();
-        }           
+        }
+
     }
 }

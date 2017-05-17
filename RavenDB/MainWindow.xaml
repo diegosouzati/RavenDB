@@ -57,7 +57,7 @@
             </Controls:dn32ImageButton.Background>
         </Controls:dn32ImageButton>
 
-        <ListView Name="lstClientes" ItemsSource="{Binding}" Margin="10,96,16,86" SelectionChanged="lstClientes_SelectionChanged">
+        <ListView Name="lstClientes" ItemsSource="{Binding}" Margin="10,96,16,61">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nome" Width="200" DisplayMemberBinding="{Binding Nome}"/>
@@ -74,35 +74,27 @@
 
         <TextBlock x:Name="tbConsultaIdade" HorizontalAlignment="Left" Margin="419,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Consultar por "/><Run Text="Idade"/><Run Text=":"/></TextBlock>
         <TextBox Name="txtConsultaIdade" HorizontalAlignment="Left" Height="24" Margin="544,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128" KeyUp="txtConsultaIdade_KeyUp"/>
-        <Button x:Name="btnAnterior" Content="Página Anterior" HorizontalAlignment="Left" Margin="10,0,0,10" Width="193" HorizontalContentAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display" Padding="50,41,1,1" Click="btnAnterior_Click" Height="66" VerticalAlignment="Bottom">
-            <Button.Background>
-                <ImageBrush ImageSource="img/previous.png" Stretch="None">
-                    <ImageBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
-                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
-                            <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </ImageBrush.RelativeTransform>
-                </ImageBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnProximo" Content="Próxima Página" Margin="0,0,16,10" HorizontalContentAlignment="Left" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display" Padding="50,41,1,1" Click="btnProximo_Click" Height="66" VerticalAlignment="Bottom" Width="193" HorizontalAlignment="Right">
-            <Button.Background>
-                <ImageBrush ImageSource="img/next.png" Stretch="None" TileMode="Tile">
-                    <ImageBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
-                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
-                            <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </ImageBrush.RelativeTransform>
-                </ImageBrush>
-            </Button.Background>
-        </Button>
-        <TextBlock Name="txtPaginaAtual" HorizontalAlignment="Center" Margin="465,0,476,15" TextWrapping="Wrap" Text="Página: 1" Height="21" VerticalAlignment="Bottom"/>
 
+        <TextBlock Name="txtPaginaAtual" Margin="130,0,129,15" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Página: 1" Height="21" VerticalAlignment="Bottom"/>
+
+        <Controls:dn32ImageButton x:Name="btnProximo"
+            Style="{DynamicResource dn32ButtonStyle}"
+            Text="Novo" FontSize="11"
+            Padding="11" Margin="0,0,10,10" BorderThickness="2"
+            RenderTransformOrigin="0.149,0.489" Click="btnProximo_Click" Height="46" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94" >
+            <Controls:dn32ImageButton.Background>
+                <ImageBrush Stretch="None" ImageSource="img/next.png"/>
+            </Controls:dn32ImageButton.Background>
+        </Controls:dn32ImageButton>
+
+        <Controls:dn32ImageButton x:Name="btnAnterior"
+            Style="{DynamicResource dn32ButtonStyle}"
+            Text="Novo" FontSize="11"
+            Padding="11" Margin="10,0,0,10" BorderThickness="2"
+            RenderTransformOrigin="0.149,0.489" Click="btnAnterior_Click" HorizontalAlignment="Left" Width="94" Height="46" VerticalAlignment="Bottom" >
+            <Controls:dn32ImageButton.Background>
+                <ImageBrush Stretch="None" ImageSource="img/previous.png"/>
+            </Controls:dn32ImageButton.Background>
+        </Controls:dn32ImageButton>
     </Grid>
 </Window>

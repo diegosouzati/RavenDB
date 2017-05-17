@@ -5,41 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RavenDB"
         mc:Ignorable="d"
-        Title="Cadastro de Cliente" Height="393.49" Width="416.015"
+        Title="Cadastro de Cliente" Height="410.99" Width="416.015"
         Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" 
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
-        <TextBlock Name="tbNome" HorizontalAlignment="Left" Margin="26,24,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" TextAlignment="Right" Width="77"/>
-        <TextBox Text="{Binding Nome}" Name="txtNome" Height="23" Margin="107,24,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Name="tbNome" HorizontalAlignment="Left" Margin="24,48,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Nome}" Name="txtNome" Height="22" Margin="104,48,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbCPF" HorizontalAlignment="Left" Margin="27,52,0,0" TextWrapping="Wrap" Text="CPF" VerticalAlignment="Top" TextAlignment="Right" Width="75"/>
-        <TextBox Text="{Binding CPF}" x:Name="txtCPF" Height="23" Margin="107,52,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbCPF" HorizontalAlignment="Left" Margin="24,76,0,0" TextWrapping="Wrap" Text="CPF" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding CPF}" x:Name="txtCPF" Height="22" Margin="104,76,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbIdade" HorizontalAlignment="Left" Margin="27,80,0,0" TextWrapping="Wrap" Text="Idade" VerticalAlignment="Top" TextAlignment="Right" Width="75"/>
-        <TextBox Text="{Binding Idade}" x:Name="txtIdade" Height="23" Margin="107,80,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbIdade" HorizontalAlignment="Left" Margin="24,104,0,0" TextWrapping="Wrap" Text="Idade" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Idade}" x:Name="txtIdade" Height="22" Margin="104,104,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="27,108,0,0" TextWrapping="Wrap" Text="E-mail" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
-        <TextBox Text="{Binding Email}" x:Name="txtEmail" Height="23" Margin="107,108,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="24,132,0,0" TextWrapping="Wrap" Text="E-mail" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Email}" x:Name="txtEmail" Height="22" Margin="104,132,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbTelefone" HorizontalAlignment="Left" Margin="29,136,0,0" TextWrapping="Wrap" Text="Telefone" VerticalAlignment="Top" TextAlignment="Right" Width="75"/>
-        <TextBox Text="{Binding Telefone}" x:Name="txtTelefone" Height="23" Margin="107,136,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbTelefone" HorizontalAlignment="Left" Margin="26,160,0,0" TextWrapping="Wrap" Text="Telefone" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Telefone}" x:Name="txtTelefone" Height="22" Margin="104,160,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbLogradouro" HorizontalAlignment="Left" Margin="29,164,0,0" TextWrapping="Wrap" Text="Logradouro" VerticalAlignment="Top" TextAlignment="Right" Width="75"/>
-        <TextBox Text="{Binding Endereco.Logradouro}" x:Name="txtLogradouro" Height="23" Margin="107,164,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbLogradouro" HorizontalAlignment="Left" Margin="26,188,0,0" TextWrapping="Wrap" Text="Logradouro" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Endereco.Logradouro}" x:Name="txtLogradouro" Height="22" Margin="104,188,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbComplemento" HorizontalAlignment="Left" Margin="27,192,0,0" TextWrapping="Wrap" Text="Complemento" VerticalAlignment="Top" TextAlignment="Right"/>
-        <TextBox Text="{Binding Endereco.Complemento}" x:Name="txtComplemento" Height="23" Margin="107,192,15,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <TextBlock x:Name="tbComplemento" HorizontalAlignment="Left" Margin="24,216,0,0" TextWrapping="Wrap" Text="Complemento" VerticalAlignment="Top" TextAlignment="Right"/>
+        <TextBox Text="{Binding Endereco.Complemento}" x:Name="txtComplemento" Height="22" Margin="104,216,18,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
-        <TextBlock x:Name="tbnumero" HorizontalAlignment="Left" Margin="27,220,0,0" TextWrapping="Wrap" Text="Número" VerticalAlignment="Top" TextAlignment="Right" Width="77"/>
-        <TextBox Text="{Binding Endereco.Numero}" x:Name="txtNumero" Height="23" Margin="107,220,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbnumero" HorizontalAlignment="Left" Margin="24,244,0,0" TextWrapping="Wrap" Text="Número" VerticalAlignment="Top" TextAlignment="Right" Width="78"/>
+        <TextBox Text="{Binding Endereco.Numero}" x:Name="txtNumero" Height="22" Margin="104,244,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbCidade" HorizontalAlignment="Left" Margin="27,248,0,0" TextWrapping="Wrap" Text="Cidade" VerticalAlignment="Top" TextAlignment="Right" RenderTransformOrigin="1.328,0.692" Width="76"/>
-        <TextBox Text="{Binding Endereco.Cidade}" x:Name="txtCidade" Height="23" Margin="107,248,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbCidade" HorizontalAlignment="Left" Margin="24,272,0,0" TextWrapping="Wrap" Text="Cidade" VerticalAlignment="Top" TextAlignment="Right" RenderTransformOrigin="1.328,0.692" Width="76"/>
+        <TextBox Text="{Binding Endereco.Cidade}" x:Name="txtCidade" Height="22" Margin="104,272,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="tbEstado" HorizontalAlignment="Left" Margin="26,276,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top" TextAlignment="Right" Width="77"/>
-        <TextBox Text="{Binding Endereco.Estado}" x:Name="txtEstado" Height="23" Margin="107,276,15,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbEstado" HorizontalAlignment="Left" Margin="24,300,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top" TextAlignment="Right" Width="76"/>
+        <TextBox Text="{Binding Endereco.Estado}" x:Name="txtEstado" Height="22" Margin="104,300,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <Button Name="btnSalvar" Content="Salvar Alterações" Margin="278,320,10,10" Click="btnSalvar_Click"/>
+        <Button Name="btnSalvar" Content="Salvar Alterações" Margin="278,0,10,10" Click="btnSalvar_Click" Height="37" VerticalAlignment="Bottom"/>
 
+        <ComboBox Name="cmbIndicador" HorizontalAlignment="Left" ItemsSource="{Binding}" DisplayMemberPath="Nome" SelectedValuePath="Id" Margin="105,20,0,0" VerticalAlignment="Top" Width="285" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock x:Name="tbIndicadoPor" HorizontalAlignment="Left" Margin="22,26,0,0" TextWrapping="Wrap" Text="Indicado Por:" VerticalAlignment="Top" TextAlignment="Right" Width="78"/>
     </Grid>
 </Window>

@@ -34,7 +34,7 @@ namespace Repositorio
         }
 
         // Método para Editar um cadastro
-        public virtual string Editar(T item) 
+        public virtual string Editar(T item)
         {
             return Salvar(item);
         }
@@ -58,9 +58,17 @@ namespace Repositorio
                 return session.Load<T>(IdDoItem);
             }
         }
+        public virtual List<T> Liste()
+        {
+            using (IDocumentSession session = store.OpenSession())
+            {
+                return session.Query<T>().ToList();
+                //Listar Dados Na tela
+            }
+        }
 
         // Método Listar os dados do banco na tela
-        public virtual List<T> Liste(int pagina, int elementosPorPagina)
+        public virtual List<T> Liste(int pagina, int elementosPorPagina, out RavenQueryStatistics estatisticas)
         {
             var quantidadeAPular = (pagina - 1) * elementosPorPagina;
 
@@ -69,10 +77,11 @@ namespace Repositorio
                 //Listar Dados Na tela
                 return session
                     .Query<T>()
+                    .Statistics(out estatisticas) // Informa as estatisticas do elemento.
                     .OrderBy(x => x.Nome) //Regra de negócio para ordenação
                     .Skip(quantidadeAPular) // Numeração de página
                     .Take(elementosPorPagina) // Quantidade de elementos por página
-                    .ToList(); 
+                    .ToList();
             }
         }
 
