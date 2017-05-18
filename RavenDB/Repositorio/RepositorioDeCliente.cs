@@ -13,25 +13,25 @@ namespace Repositorio
             using (IDocumentSession session = store.OpenSession())
             {
                 var cliente = session.Load<Cliente>(IdDoItem);
-                cliente.Indicador = session.Load<Cliente>(cliente.IndicadorId);
+                if (cliente.IndicadorId != null)
+                {
+                    cliente.Indicador = session.Load<Cliente>(cliente.IndicadorId);
+                }
                 return cliente;
             }
         }
-        public List<Cliente>ConsultePorTermo(string termo)
-        {
-            using (IDocumentSession session = store.OpenSession())
-            {
-                return session.Query<Cliente>().Where(x => x.Nome == termo).ToList();  
-                // Lambda para busca de cadastro através de nome do cliente              
-            }
-        }
+      
 
         public List<Cliente>ConsultePorIdade(int idade)
         {
             using (IDocumentSession session = store.OpenSession())
             {
                 // Lambda para busca de cadastro através da idade do cliente
-                return session.Query<Cliente>().Where(x => x.Idade == idade).ToList();
+                return session
+                    .Advanced
+                    .DocumentQuery<Cliente>()
+                    .Where($"Idade: *{idade}*")
+                    .ToList();
             }
         }
     }

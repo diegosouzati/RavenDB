@@ -40,7 +40,11 @@ namespace RavenDB
         {
             Cliente = (Cliente)this.DataContext; // salva um cliente novo no banco de dados
             Cliente.Indicador = (Cliente)cmbIndicador.SelectedItem; // Salva o indicador de um novo cliente
-            Cliente.IndicadorId = ((Cliente)cmbIndicador.SelectedItem).Id; // retorna o id do cliente indicador
+
+            if (Cliente.IndicadorId != null)
+            {
+                Cliente.IndicadorId = ((Cliente)cmbIndicador.SelectedItem).Id; // retorna o id do cliente indicador
+            }
             MessageBox.Show("Cliente Salvo com Sucesso"); //Mensagem de aviso de conclusão
             this.Close();
         }

@@ -58,6 +58,21 @@ namespace Repositorio
                 return session.Load<T>(IdDoItem);
             }
         }
+
+        public List<T> ConsultePorTermo(string termo)
+        {
+            using (IDocumentSession session = store.OpenSession())
+            {
+                return session
+                    .Advanced
+                    .DocumentQuery<T>()
+                    .Where($"Nome: {termo}").Boost(100)
+                    .Where($"Nome: {termo}*").Boost(100)
+                    .Where($"Nome: *{termo}*").Boost(10)
+                    .ToList();
+                // Lambda para busca de cadastro através de nome do cliente              
+            }
+        }
         public virtual List<T> Liste()
         {
             using (IDocumentSession session = store.OpenSession())
